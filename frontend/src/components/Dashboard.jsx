@@ -6,7 +6,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/users')
+    axios.get('/api/users')
       .then(res => {
         setUsers(res.data);
         setLoading(false);
