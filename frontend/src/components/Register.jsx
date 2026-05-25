@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
-export default function Register() {
+export default function Register({ setIsAuthenticated }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,7 +14,9 @@ export default function Register() {
     try {
       const res = await axios.post('/api/auth/register', { name, email, password });
       localStorage.setItem('token', res.data.token);
-      window.location.href = '/dashboard';
+      localStorage.setItem('userName', res.data.user.name);
+      setIsAuthenticated(true);
+      navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed.');
     }
