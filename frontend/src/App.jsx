@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from 'react
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   const isAuthenticated = !!localStorage.getItem('token');
@@ -13,6 +14,7 @@ function App() {
           <NavLink to="/dashboard" className={({isActive}) => isActive ? "active" : ""}>Dashboard</NavLink>
           <NavLink to="/profile" className={({isActive}) => isActive ? "active" : ""}>Profile</NavLink>
           {!isAuthenticated && <NavLink to="/login" className={({isActive}) => isActive ? "active" : ""}>Login</NavLink>}
+          {!isAuthenticated && <NavLink to="/register" className={({isActive}) => isActive ? "active" : ""}>Register</NavLink>}
           {isAuthenticated && (
             <a href="#" onClick={(e) => {
               e.preventDefault();
@@ -27,6 +29,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </Router>
