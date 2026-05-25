@@ -1,0 +1,5 @@
+node_modules/
+.env
+.DS_Store
+frontend/dist/
+# but we do want to commit frontend/build/ if we are deploying without building there
